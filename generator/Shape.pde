@@ -26,7 +26,7 @@ ArrayList<Contour> findContours(PImage img){
   opencv = new OpenCV(this, img);
   
   opencv.gray();
-  opencv.threshold(240); //aumentar este valor se não estiver a dar 
+  opencv.threshold(230); //aumentar este valor se não estiver a dar 
   dst = opencv.getOutput();
   
   return opencv.findContours();

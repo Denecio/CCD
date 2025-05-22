@@ -1,6 +1,9 @@
 import java.util.*; // Needed to sort arrays
 
-// This class stores and manages a population of individuals (harmonographs).
+int population_size = 50;
+int elite_size = 2;
+int tournament_size = 4;
+
 class Population {
   Module[] individuals;
   Evaluator eval;

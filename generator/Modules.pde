@@ -1,5 +1,8 @@
+float crossover_rate = 0.7;
+float mutation_rate = 0.05;
+
 class Module {
-  int numShapes = 6;
+  int numShapes = 20;
   int genesPerShape = 5;
   float[] genes = new float[numShapes * genesPerShape];
   float fitness = 0; // Fitness value
@@ -44,8 +47,8 @@ class Module {
       int offset = i * genesPerShape;
       float x = map(genes[offset], 0, 1, -canvas.width / 2, canvas.width / 2);
       float y = map(genes[offset + 1], 0, 1, -canvas.height / 2, canvas.height / 2);
-      int shapeType = floor(genes[offset + 2] * 3); // 0=circle, 1=rect, 2=triangle
-      float size = map(genes[offset + 3], 0, 1, 0.1, 0.5);
+      int shapeType = floor(genes[offset + 2] * (shapes.size() - 1)); // 0=circle, 1=rect, 2=triangle
+      float size = map(genes[offset + 3], 0, 1, 0.05, 0.2);
       float angle = map(genes[offset + 4], 0, 1, 0, TWO_PI);
   
       canvas.pushMatrix();
@@ -57,18 +60,8 @@ class Module {
       canvas.stroke(0);
       canvas.strokeWeight(1.5);
       
-      if(shapes.size() >0){
-        switch (shapeType) {
-          case 0:
-            drawShapes(canvas, shapes.get(0), colors.get(0), img);
-            break;
-          case 1:
-            drawShapes(canvas, shapes.get(1), colors.get(1), img);
-            break;
-          case 2:
-            drawShapes(canvas, shapes.get(2), colors.get(2), img);
-            break;
-        }
+      if(shapes.size() > 0){
+        drawShapes(canvas, shapes.get(shapeType), colors.get(shapeType), img);
       }
   
       canvas.popMatrix();
